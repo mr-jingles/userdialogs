@@ -4,10 +4,9 @@ using System.Drawing;
 
 namespace Plugin.UserDialogs
 {
-    public class Label : AbstractObservableObject
+    public abstract class AbstractLabel : AbstractObservableObject, ILabel
     {
-
-        // TODO: from Html?
+        //// TODO: from Html?
         string text;
         public string Text
         {
@@ -17,7 +16,6 @@ namespace Plugin.UserDialogs
 
 
         Color? textColor;
-
         public Color? TextColor
         {
             get => this.textColor;

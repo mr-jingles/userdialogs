@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace Plugin.UserDialogs
 {
-    public class TextBox : Label
+    public abstract class AbstractTextBox : AbstractLabel, ITextBox
     {
         public KeyboardType Keyboard { get; set; } = KeyboardType.Default;
 

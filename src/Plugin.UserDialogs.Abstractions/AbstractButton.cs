@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace Plugin.UserDialogs
 {
-    public class Button : Label
+    public abstract class AbstractButton : AbstractLabel, IButton
     {
         public ICommand Command { get; set; }
     }

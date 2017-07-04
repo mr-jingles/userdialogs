@@ -8,6 +8,6 @@ namespace Plugin.UserDialogs
     {
         public Label Message { get; set; }
         public IBitmap Icon { get; set; }
-        public Button Button { get; set; }
+        public IButton Button { get; set; }
     }
 }

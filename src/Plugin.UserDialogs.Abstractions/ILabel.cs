@@ -5,14 +5,10 @@ using System.Drawing;
 
 namespace Plugin.UserDialogs
 {
-    public interface IToast : INotifyPropertyChanged, IDisposable
+    public interface ILabel : INotifyPropertyChanged
     {
         string Text { get; set; }
         Color? TextColor { get; set; }
         Color? BackgroundColor { get; set; }
-        bool IsShowing { get; set; }
-
-        // TODO: may need create function on this
-        IButton Button { get; set; }
     }
 }

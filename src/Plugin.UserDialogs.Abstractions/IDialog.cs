@@ -12,8 +12,8 @@ namespace Plugin.UserDialogs
 
         bool IsCancellable { get; set; }
 
-        Button PositiveButton { get; set; }
-        Button NegativeButton { get; set; }
-        Button NeutralButton { get; set; }
+        IButton PositiveButton { get; set; }
+        IButton NegativeButton { get; set; }
+        IButton NeutralButton { get; set; }
     }
 }
