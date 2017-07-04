@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard1.1</TargetFramework>
+        <RootNamespace>Plugin.UserDialogs</RootNamespace>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="..\Plugin.UserDialogs.Shared\AssemblyInfo.cs" Link="AssemblyInfo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Splat" Version="2.0.0" />
+    </ItemGroup>
+
+
+    <Import Project="..\Plugin.UserDialogs.Shared\Plugin.UserDialogs.Shared.projitems" Label="Shared" />
+
+</Project>

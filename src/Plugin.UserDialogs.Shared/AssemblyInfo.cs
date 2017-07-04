@@ -6,8 +6,8 @@
 [assembly: AssemblyConfiguration("")]
 #endif
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Acr.UserDialogs")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("Plugin.UserDialogs")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -3,9 +3,13 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>46b432f2-8bd9-4347-91c3-c8b08938be48</SharedGUID>
+    <SharedGUID>630f9a7a-216f-4c67-b2ef-25f34ae3f5e7</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Acr.UserDialogs</Import_RootNamespace>
+    <Import_RootNamespace>Plugin.UserDialogs</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CrossUserDialogs.cs" />
+  </ItemGroup>
 </Project>

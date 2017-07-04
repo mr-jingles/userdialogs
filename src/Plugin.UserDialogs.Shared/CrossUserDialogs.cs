@@ -7,10 +7,10 @@ using Android.App;
 using Acr.Support.Android;
 #endif
 
-namespace Acr.UserDialogs 
+namespace Plugin.UserDialogs
 {
 
-    public static class UserDialogs 
+    public static class CrossUserDialogs
     {
 
 #if __ANDROID__
@@ -54,23 +54,23 @@ namespace Acr.UserDialogs
 
 #endif
 
-        static IUserDialogs currentInstance;
-        public static IUserDialogs Instance
+        static IUserDialogs current;
+        public static IUserDialogs Current
         {
             get
             {
 #if BAIT
-                if (currentInstance == null)
-                    throw new ArgumentException("[Acr.UserDialogs] This is the bait library, not the platform library.  You must install the nuget package in your main executable/application project");
+                if (current == null)
+                    throw new ArgumentException("[Plugin.UserDialogs] This is the bait library, not the platform library.  You must install the nuget package in your main executable/application project");
 #elif __ANDROID__
-                if (currentInstance == null)
-                    throw new ArgumentException("[Acr.UserDialogs] In android, you must call UserDialogs.Init(Activity) from your first activity OR UserDialogs.Init(App) from your custom application OR provide a factory function to get the current top activity via UserDialogs.Init(() => supply top activity)");
+                if (current == null)
+                    throw new ArgumentException("[Plugin.UserDialogs] In android, you must call UserDialogs.Init(Activity) from your first activity OR UserDialogs.Init(App) from your custom application OR provide a factory function to get the current top activity via UserDialogs.Init(() => supply top activity)");
 #else
-                currentInstance = currentInstance ?? new UserDialogsImpl();
+                current = current ?? new UserDialogsImpl();
 #endif
-                return currentInstance;
+                return current;
             }
-            set => currentInstance = value;
+            set => current = value;
         }
     }
 }
