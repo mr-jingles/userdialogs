@@ -13,14 +13,27 @@ namespace Plugin.UserDialogs
         public TextBox(UITextField native)
         {
             this.native = native;
+            this.native.AddTarget((sender, e) => this.Text = this.native.Text, UIControlEvent.EditingChanged);
         }
 
+        /*
+                if (config.MaxLength != null)
+                {
+                    txt.ShouldChangeCharacters = (field, replacePosition, replacement) =>
+                    {
+                        var updatedText = new StringBuilder(field.Text);
+                        updatedText.Remove((int)replacePosition.Location, (int)replacePosition.Length);
+                        updatedText.Insert((int)replacePosition.Location, replacement);
+                        return updatedText.ToString().Length <= config.MaxLength.Value;
+                    };
+                }
 
-        public override void Dispose()
-        {
-            base.Dispose();
-        }
-
+                if (config.OnTextChanged != null)
+                {
+                    txt.AddTarget((sender, e) => ValidatePrompt(txt, btnOk, config), UIControlEvent.EditingChanged);
+                    ValidatePrompt(txt, btnOk, config);
+                }
+             */
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
@@ -48,7 +61,46 @@ namespace Plugin.UserDialogs
                     break;
 
                 case nameof(this.Keyboard):
-                    //this.native.KeyboardType =
+                    this.SetInputType(this.native, this.Keyboard);
+                    break;
+            }
+        }
+
+
+        protected virtual void SetInputType(UITextField txt, KeyboardType keyboardType)
+        {
+            switch (keyboardType)
+            {
+                case KeyboardType.DecimalNumber:
+                    txt.KeyboardType = UIKeyboardType.DecimalPad;
+                    break;
+
+                case KeyboardType.Email:
+                    txt.KeyboardType = UIKeyboardType.EmailAddress;
+                    break;
+
+                case KeyboardType.Name:
+                    break;
+
+                case KeyboardType.Number:
+                    txt.KeyboardType = UIKeyboardType.NumberPad;
+                    break;
+
+                case KeyboardType.NumericPassword:
+                    txt.SecureTextEntry = true;
+                    txt.KeyboardType = UIKeyboardType.NumberPad;
+                    break;
+
+                case KeyboardType.Password:
+                    txt.SecureTextEntry = true;
+                    break;
+
+                case KeyboardType.Phone:
+                    txt.KeyboardType = UIKeyboardType.PhonePad;
+                    break;
+
+                case KeyboardType.Url:
+                    txt.KeyboardType = UIKeyboardType.Url;
                     break;
             }
         }

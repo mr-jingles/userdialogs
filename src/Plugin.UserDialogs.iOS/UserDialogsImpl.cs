@@ -1,23 +1,13 @@
 ﻿using System;
-using UIKit;
 
 
 namespace Plugin.UserDialogs
 {
-    public class UserDialogsImpl : IUserDialogs
+    public class UserDialogsImpl : AbstractUserDialogs
     {
-        public IAlertDialog CreateAlert(string title) => new AlertDialog();
-
-
-        public IActionSheetDialog CreateActionSheet(string title)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public IToast CreateToast()
-        {
-            throw new NotImplementedException();
-        }
+        public override IAlertDialog CreateAlert() => new AlertDialog();
+        public override IActionSheetDialog CreateActionSheet() => null;
+        public override IToast CreateToast() => null;
+        public override IProgressDialog CreateProgress() => null;
     }
 }

@@ -36,9 +36,6 @@ Supported Platforms
         <projectUrl>https://github.com/aritchie/userdialogs</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>windows xamarin xam.pcl dialogs plugin</tags>
-        <dependencies>
-            <dependency id="Acr.UserDialogs" version="[6.2.4,)" />
-        </dependencies>
         <releaseNotes>
 Acr.UserDialogs 6.2.4
         </releaseNotes>

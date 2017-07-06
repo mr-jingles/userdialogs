@@ -3,21 +3,24 @@
 
 namespace Plugin.UserDialogs
 {
-    public class UserDialogsImpl : IUserDialogs
+    public class UserDialogsImpl : AbstractUserDialogs
     {
-        public IAlertDialog CreateAlert(string title)
+        public override IAlertDialog CreateAlert()
         {
             throw new NotImplementedException();
         }
 
-
-        public IActionSheetDialog CreateActionSheet(string title)
+        public override IActionSheetDialog CreateActionSheet()
         {
             throw new NotImplementedException();
         }
 
+        public override IToast CreateToast()
+        {
+            throw new NotImplementedException();
+        }
 
-        public IToast CreateToast()
+        public override IProgressDialog CreateProgress()
         {
             throw new NotImplementedException();
         }

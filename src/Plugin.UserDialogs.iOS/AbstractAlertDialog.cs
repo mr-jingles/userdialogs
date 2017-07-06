@@ -13,6 +13,24 @@ namespace Plugin.UserDialogs
         }
 
 
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            switch (propertyName)
+            {
+                case nameof(this.Title):
+                    this.Controller.Title = this.Title;
+                    break;
+
+                case nameof(this.Message):
+                    this.Controller.Message = this.Message;
+                    break;
+
+                case nameof(this.IsCancellable):
+                    break;
+            }
+        }
+
         protected UIAlertController Controller { get; }
 
 
@@ -48,6 +66,7 @@ namespace Plugin.UserDialogs
             throw new NotImplementedException();
         }
 
+
         public override void SetNeutralButton(Action<IButton> button)
         {
             var action = UIAlertAction.Create("", UIAlertActionStyle.Cancel, x => {});
@@ -55,3 +74,32 @@ namespace Plugin.UserDialogs
         }
     }
 }
+/*
+            UIAlertController alert = null;
+            var app = UIApplication.SharedApplication;
+            app.InvokeOnMainThread(() =>
+            {
+                alert = alertFunc();
+                var top = this.viewControllerFunc();
+                if (alert.PreferredStyle == UIAlertControllerStyle.ActionSheet && UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
+                {
+                    var x = top.View.Bounds.Width / 2;
+                    var y = top.View.Bounds.Bottom;
+                    var rect = new CGRect(x, y, 0, 0);
+
+                    alert.PopoverPresentationController.SourceView = top.View;
+                    alert.PopoverPresentationController.SourceRect = rect;
+                    alert.PopoverPresentationController.PermittedArrowDirections = UIPopoverArrowDirection.Unknown;
+                }
+                top.PresentViewController(alert, true, null);
+            });
+            return new DisposableAction(() =>
+            {
+                try
+                {
+                    app.InvokeOnMainThread(() => alert.DismissViewController(true, null));
+                }
+                catch { }
+            });
+        }
+     */
