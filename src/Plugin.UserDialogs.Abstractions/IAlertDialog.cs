@@ -5,6 +5,6 @@ namespace Plugin.UserDialogs
 {
     public interface IAlertDialog : IDialog
     {
-        ITextBox AddTextBox();
+        void AddTextBox(Action<ITextBox> textbox);
     }
 }

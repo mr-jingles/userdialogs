@@ -6,16 +6,11 @@ namespace Plugin.UserDialogs
 {
     public class UserDialogsImpl : IUserDialogs
     {
-        public IAlertDialog CreateAlert(string title)
-        {
-            var alert = UIAlertController.Create("", "", UIAlertControllerStyle.Alert);
-            throw new NotImplementedException();
-        }
+        public IAlertDialog CreateAlert(string title) => new AlertDialog();
 
 
         public IActionSheetDialog CreateActionSheet(string title)
         {
-            var alert = UIAlertController.Create("", "", UIAlertControllerStyle.ActionSheet);
             throw new NotImplementedException();
         }
 

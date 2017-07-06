@@ -5,6 +5,6 @@ namespace Plugin.UserDialogs
 {
     public interface IActionSheetDialog : IDialog
     {
-        IActionButton AddButton();
+        void CreateAction(Action<IButton> actionButton);
     }
 }

@@ -1,12 +1,20 @@
 ﻿using System;
+using UIKit;
 
 namespace Plugin.UserDialogs
 {
-    public class ActionSheetDialog : AbstractDialog, IActionSheetDialog
+    public class ActionSheetDialog : AbstractAlertDialog, IActionSheetDialog
     {
-        public IActionButton AddButton()
+        public ActionSheetDialog() : base(UIAlertControllerStyle.ActionSheet)
         {
-            throw new NotImplementedException();
+        }
+
+
+        public void CreateAction(Action<IButton> actionButton)
+        {
+            var native = UIAlertAction.Create("", UIAlertActionStyle.Default, x => { });
+
+            this.Controller.AddAction(UIAlertAction.Create("", UIAlertActionStyle.Default, x => { }));
         }
     }
 }

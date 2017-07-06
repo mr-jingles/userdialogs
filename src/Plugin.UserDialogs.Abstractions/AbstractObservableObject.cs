@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Plugin.UserDialogs
 {
-    public abstract class AbstractObservableObject : INotifyPropertyChanged
+    public abstract class AbstractObservableObject : INotifyPropertyChanged, IDisposable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,5 +24,12 @@ namespace Plugin.UserDialogs
             this.OnPropertyChanged(propertyName);
             return true;
         }
+
+
+        ~AbstractObservableObject() => this.Dispose(false);
+
+
+        public virtual void Dispose() => this.Dispose(true);
+        protected virtual void Dispose(bool disposing) {}
     }
 }

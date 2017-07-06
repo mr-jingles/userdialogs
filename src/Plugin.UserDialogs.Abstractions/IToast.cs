@@ -7,12 +7,13 @@ namespace Plugin.UserDialogs
 {
     public interface IToast : INotifyPropertyChanged, IDisposable
     {
-        string Text { get; set; }
-        Color? TextColor { get; set; }
-        Color? BackgroundColor { get; set; }
-        bool IsShowing { get; set; }
+        void Show();
+        void Hide();
+        bool IsVisible { get; }
 
-        // TODO: may need create function on this
-        IButton Button { get; set; }
+        ILabel Message { get; set; }
+        TimeSpan? VisibleDuration { get; set; }
+
+        void SetButton(Action<IButton> button);
     }
 }

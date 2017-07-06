@@ -20,7 +20,7 @@ namespace Plugin.UserDialogs
         /// </summary>
         public static void Init(Func<Activity> topActivityFactory)
         {
-            Instance = new UserDialogsImpl(topActivityFactory);
+            //Instance = new UserDialogsImpl(topActivityFactory);
         }
 
 
@@ -49,7 +49,7 @@ namespace Plugin.UserDialogs
         /// </summary>
         public static void Init(Func<UIViewController> viewControllerFunc)
         {
-            Instance = new UserDialogsImpl(viewControllerFunc);
+            //Instance = new UserDialogsImpl(viewControllerFunc);
         }
 
 #endif
@@ -66,7 +66,7 @@ namespace Plugin.UserDialogs
                 if (current == null)
                     throw new ArgumentException("[Plugin.UserDialogs] In android, you must call UserDialogs.Init(Activity) from your first activity OR UserDialogs.Init(App) from your custom application OR provide a factory function to get the current top activity via UserDialogs.Init(() => supply top activity)");
 #else
-                current = current ?? new UserDialogsImpl();
+                //current = current ?? new UserDialogsImpl();
 #endif
                 return current;
             }
