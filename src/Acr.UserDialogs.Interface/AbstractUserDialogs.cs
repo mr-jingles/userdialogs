@@ -23,7 +23,7 @@ namespace Acr.UserDialogs
         public abstract void ShowSuccess(string message, int timeoutMillis);
         public abstract IDisposable Toast(ToastConfig config);
         protected abstract IProgressDialog CreateDialogInstance(ProgressDialogConfig config);
-
+        public abstract IDisposable ConflictPrompt(ConflictPromptConfig config);
 
         public virtual async Task<string> ActionSheetAsync(string title, string cancel, string destructive, CancellationToken? cancelToken = null, params string[] buttons)
         {
