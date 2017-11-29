@@ -172,11 +172,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)\Acr.UserDialogs.Interface\Acr.UserDialogs.Interface.csproj">
+    <ProjectReference Include="..\Acr.UserDialogs.Interface\Acr.UserDialogs.Interface.csproj">
       <Project>{6a0ae941-711d-4c36-a311-960b65534b22}</Project>
       <Name>Acr.UserDialogs.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)\Acr.UserDialogs\Acr.UserDialogs.csproj">
+    <ProjectReference Include="..\Acr.UserDialogs\Acr.UserDialogs.csproj">
       <Project>{ad34aa53-f275-4f18-a51c-9809c4e1f3bc}</Project>
       <Name>Acr.UserDialogs</Name>
     </ProjectReference>
