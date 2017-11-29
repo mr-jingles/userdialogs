@@ -42,6 +42,7 @@ Global
 		Acr.UserDialogs.Shared\Acr.UserDialogs.Shared.projitems*{46b432f2-8bd9-4347-91c3-c8b08938be48}*SharedItemsImports = 13
 		Acr.UserDialogs.Shared\Acr.UserDialogs.Shared.projitems*{a9215e66-03e0-45fe-aab7-f1488c82bb1a}*SharedItemsImports = 4
 		Acr.UserDialogs.Shared\Acr.UserDialogs.Shared.projitems*{ad34aa53-f275-4f18-a51c-9809c4e1f3bc}*SharedItemsImports = 4
+		Acr.UserDialogs.Shared\Acr.UserDialogs.Shared.projitems*{e7273c26-d3e3-4161-b464-69cd6fe606b1}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
