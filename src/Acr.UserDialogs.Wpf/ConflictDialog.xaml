@@ -28,7 +28,7 @@
             <DataGrid x:Name="BaseTable" ItemsSource="{Binding Base}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single"/>
         </StackPanel>
         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button Name="_okButton" IsDefault="True" Click="HandleButtonClick" MinWidth="60" Margin="0,0,10,0" Content="_Ok" IsEnabled="{Binding SelectedConflict, Converter={StaticResource NullToBooleanConverter}}"/>
+            <Button Name="_okButton" IsDefault="True" Command="{Binding SubmitConflictCommand}" MinWidth="60" Margin="0,0,10,0" Content="_Ok" IsEnabled="{Binding SelectedConflict, Converter={StaticResource NullToBooleanConverter}}"/>
         </WrapPanel>
     </Grid>
 </Window>
