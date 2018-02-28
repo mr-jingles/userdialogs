@@ -1,0 +1,34 @@
+﻿<Window x:Class="Acr.UserDialogs.ConflictDialogBak"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Acr.UserDialogs"
+        xmlns:converter="clr-namespace:Acr.UserDialogs.Converter"        
+        mc:Ignorable="d"
+        Title="ConflictDialog"  SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converter:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    </Window.Resources>
+    <Grid Margin="15" x:Name="ConflictGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" x:Name="ConflictPanel">
+            <TextBlock Text="Local Version" />
+            <DataGrid x:Name="MineTable" ItemsSource="{Binding LocalVersion}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single" />
+            <TextBlock Text="Server Version" />
+            <DataGrid x:Name="TheirsTable" ItemsSource="{Binding Theirs}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single"/>
+            <TextBlock Text="Base Version" />
+            <DataGrid x:Name="BaseTable" ItemsSource="{Binding Base}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single"/>
+        </StackPanel>
+        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Name="_okButton" IsDefault="True" Click="HandleButtonClick" MinWidth="60" Margin="0,0,10,0" Content="_Ok" IsEnabled="{Binding SelectedConflict, Converter={StaticResource NullToBooleanConverter}}"/>
+        </WrapPanel>
+    </Grid>
+</Window>

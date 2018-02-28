@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ookii.Dialogs.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,17 @@ namespace Acr.UserDialogs
 
         public override IDisposable Alert(AlertConfig config)
         {
-            throw new NotImplementedException();
+            var dlg = new TaskDialog
+            {
+                WindowTitle = config.Title,
+                Content = config.Message,
+                Buttons =
+                {
+                    new TaskDialogButton(config.OkText)
+                }
+            };
+            dlg.ShowDialog();
+            return new DisposableAction(dlg.Dispose);
         }
 
         public override IDisposable Confirm(ConfirmConfig config)
@@ -43,7 +54,13 @@ namespace Acr.UserDialogs
 
         public override void ShowError(string message, int timeoutMillis)
         {
-            throw new NotImplementedException();
+            var a = Alert(new AlertConfig
+            {
+                Title = "Error",
+                Message = message
+            });
+
+            a.Dispose();
         }
 
         public override void ShowImage(global::Splat.IBitmap image, string message, int timeoutMillis)
@@ -81,7 +98,7 @@ namespace Acr.UserDialogs
             };
 
             dlg.ShowDialog();
-            config.OnAction(new ConflictPromptResult(dlg.WasOk, dlg.SelectedConflict));
+            config.OnAction(new ConflictPromptResult(dlg.WasOk, dlg.SelectedDocument));
             return new DisposableAction(dlg.Dispose);
         }
 

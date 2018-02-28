@@ -20,15 +20,81 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" x:Name="ConflictPanel">
-            <TextBlock Text="Local Version" />
-            <DataGrid x:Name="MineTable" ItemsSource="{Binding LocalVersion}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single" />
-            <TextBlock Text="Server Version" />
-            <DataGrid x:Name="TheirsTable" ItemsSource="{Binding Theirs}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single"/>
-            <TextBlock Text="Base Version" />
-            <DataGrid x:Name="BaseTable" ItemsSource="{Binding Base}" SelectedItem="{Binding SelectedConflict}"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" IsReadOnly="True" SelectionMode="Single"/>
+            <CheckBox IsChecked="{Binding MineSelected}">Lokale Version</CheckBox>
+            <ItemsControl ItemsSource="{Binding Conflict.Mine, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.Resources >
+                                <Style TargetType="Border" >
+                                    <Setter Property="Padding" Value="5,5,5,5" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <TextBlock Text="{Binding Key, Mode=OneWay}"/>
+                            </Border>
+                            <Border Grid.Column="1">
+                                <TextBlock Text="{Binding Value, Mode=OneWay}"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <CheckBox IsChecked="{Binding TheirsSelected}">Server Version</CheckBox>
+            <ItemsControl ItemsSource="{Binding Conflict.Theirs, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.Resources >
+                                <Style TargetType="Border" >
+                                    <Setter Property="Padding" Value="5,5,5,5" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <TextBlock Text="{Binding Key, Mode=OneWay}"/>
+                            </Border>
+                            <Border Grid.Column="1">
+                                <TextBlock Text="{Binding Value, Mode=OneWay}"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <CheckBox IsChecked="{Binding BaseSelected}">Letzte konfliktfreie Version</CheckBox>
+            <ItemsControl ItemsSource="{Binding Conflict.Base, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.Resources >
+                                <Style TargetType="Border" >
+                                    <Setter Property="Padding" Value="5,5,5,5" />
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <TextBlock Text="{Binding Key, Mode=OneWay}"/>
+                            </Border>
+                            <Border Grid.Column="1">
+                                <TextBlock Text="{Binding Value, Mode=OneWay}"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button Name="_okButton" IsDefault="True" Click="HandleButtonClick" MinWidth="60" Margin="0,0,10,0" Content="_Ok" IsEnabled="{Binding SelectedConflict, Converter={StaticResource NullToBooleanConverter}}"/>
+            <Button Name="_okButton" IsDefault="True" Click="HandleButtonClick" MinWidth="60" Margin="0,0,10,0" Content="_Ok" IsEnabled="{Binding SelectedDocument, Converter={StaticResource NullToBooleanConverter}}"/>
         </WrapPanel>
     </Grid>
 </Window>

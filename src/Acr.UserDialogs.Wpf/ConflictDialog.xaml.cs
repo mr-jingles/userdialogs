@@ -28,7 +28,7 @@ namespace Acr.UserDialogs
     {
 
         #region Properties
-        
+
         /// <summary>
         /// Gets or sets the text for the confirmation button
         /// </summary>
@@ -43,22 +43,6 @@ namespace Acr.UserDialogs
                 _okButton.Content = value;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the text for the cancellation button
-        /// </summary>
-        /*
-        public string CancelText
-        {
-            get
-            {
-                return _cancelButton.Content as string;
-            }
-            set
-            {
-                _cancelButton.Content = value;
-            }
-        }*/
         
         /// <summary>
         /// Gets whether or not the OK button was pressed
@@ -67,29 +51,75 @@ namespace Acr.UserDialogs
         {
             get; private set;
         }
+        
+        public Conflict Conflict { get; set; }
 
-        public List<Document> Base { get; set; } = new List<Document>();
-
-        public List<Document> Theirs { get; set; } = new List<Document>();
-
-       public List<Document> LocalVersion { get; set; } = new List<Document>();
-
-        public Document _selectedConflict;
+        public Document _selectedDocument;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Document SelectedConflict {
-            get {
-                return _selectedConflict;
-            }
-        
+        public bool _mineSelected;
+        public bool MineSelected
+        {
+            get { return _mineSelected; }
             set
             {
-                _selectedConflict = null;
-                NotifyPropertyChanged("SelectedConflict");
+                _mineSelected = value;
+                _baseSelected = false;
+                _theirsSelected = false;
+                SelectedDocument = Conflict.Mine;
+                NotifyPropertyChanged("BaseSelected");
+                NotifyPropertyChanged("TheirsSelected");
+                NotifyPropertyChanged("MineSelected");
+            }
+        }
 
-                _selectedConflict = value;
-                NotifyPropertyChanged("SelectedConflict");
+        public bool _baseSelected;
+        public bool BaseSelected
+        {
+            get { return _baseSelected; }
+            set
+            {
+                _baseSelected = value;
+                _mineSelected = false;
+                _theirsSelected = false;
+                SelectedDocument = Conflict.Base;
+                NotifyPropertyChanged("BaseSelected");
+                NotifyPropertyChanged("TheirsSelected");
+                NotifyPropertyChanged("MineSelected");
+            }
+        }
+
+        public bool _theirsSelected;
+        public bool TheirsSelected
+        {
+            get { return _theirsSelected; }
+            set 
+            {
+                _theirsSelected = value;
+                _baseSelected = false;
+                _mineSelected = false;
+                SelectedDocument = Conflict.Theirs;
+                NotifyPropertyChanged("BaseSelected");
+                NotifyPropertyChanged("TheirsSelected");
+                NotifyPropertyChanged("MineSelected");
+            }
+        }
+
+        public Document SelectedDocument
+        {
+            get
+            {
+                return _selectedDocument;
+            }
+
+            set
+            {
+                _selectedDocument = null;
+                NotifyPropertyChanged("SelectedDocument");
+
+                _selectedDocument = value;
+                NotifyPropertyChanged("SelectedDocument");
 
             }
         }
@@ -101,91 +131,17 @@ namespace Acr.UserDialogs
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-        
+
         #endregion
 
         public ConflictDialog(Conflict conflict)
         {
             InitializeComponent();
             this.DataContext = this;
-
-            if (conflict.Base != null)
-            {
-                BaseTable.Columns.Add(new DataGridTextColumn());
-
-                DataGridTextColumn column;
-                foreach (var item in conflict.Base.Keys)
-                {
-                    column = new DataGridTextColumn();
-                    column.Header = item;
-                    column.Binding = new Binding("[" + item + "]");
-                    BaseTable.Columns.Add(column);
-                }
-            }
-
-            Base.Add(conflict.Base);
-
-
-            if (conflict.Theirs != null)
-            {
-                TheirsTable.Columns.Add(new DataGridTextColumn());
-
-                DataGridTextColumn column;
-                foreach (var item in conflict.Theirs.Keys)
-                {
-                    column = new DataGridTextColumn();
-                    column.Header = item;
-                    column.Binding = new Binding("[" + item + "]");
-                    TheirsTable.Columns.Add(column);
-                }
-            }
-
-            Theirs.Add(conflict.Theirs);
-            
-            if (conflict.Mine != null)
-            {
-                MineTable.Columns.Add(new DataGridTextColumn());
-
-                DataGridTextColumn column;
-                foreach (var item in conflict.Mine.Keys)
-                {
-                    column = new DataGridTextColumn();
-                    column.Header = item;
-                    column.Binding = new Binding("[" + item + "]");
-                    MineTable.Columns.Add(column);
-                }
-            }
-
-            LocalVersion.Add(conflict.Mine);
-
-            
-
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                LoadDesignTimeData();
-
-            }
+            Conflict = conflict;          
         }
 
-        public static IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
-        {
-            var itemsSource = grid.ItemsSource as IEnumerable;
-            if (null == itemsSource) yield return null;
-            foreach (var item in itemsSource)
-            {
-                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (null != row) yield return row;
-            }
-        }
-
-        private void LoadDesignTimeData()
-        {
-            /*
-            ConflictTable.ItemsSource = new MvxObservableCollection<ReadOnlyDocument>()
-            {
-               
-            };*/
-        }
+        
 
         private void HandleButtonClick(object sender, RoutedEventArgs e)
         {
@@ -203,28 +159,8 @@ namespace Acr.UserDialogs
 
         #endregion
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                /// your code here...
-                throw new ApplicationException();
-                /// your code here...
-            }
-            catch (Exception ex)
-            {
-                if (IntPtr.Size == 8)   // 64bit machines are unable to properly throw the errors during a Page_Loaded event.
-                {
-                    BackgroundWorker loaderExceptionWorker = new BackgroundWorker();
-                    loaderExceptionWorker.DoWork += ((exceptionWorkerSender, runWorkerCompletedEventArgs) => { runWorkerCompletedEventArgs.Result = runWorkerCompletedEventArgs.Argument; });
-                    loaderExceptionWorker.RunWorkerCompleted += ((exceptionWorkerSender, runWorkerCompletedEventArgs) => { throw (Exception)runWorkerCompletedEventArgs.Result; });
-                    loaderExceptionWorker.RunWorkerAsync(ex);
-                }
-                else
-                    throw;
-            }
-        }
+      
     }
 
-  
+
 }
