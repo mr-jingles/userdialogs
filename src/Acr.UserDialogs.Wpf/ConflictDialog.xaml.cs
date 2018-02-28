@@ -24,7 +24,7 @@ namespace Acr.UserDialogs
     /// <summary>
     /// Interaktionslogik für ConflictDialog.xaml
     /// </summary>
-    public partial class ConflictDialog : Window, IDisposable, INotifyPropertyChanged
+    public partial class ConflictDialog : Window, IDisposable
     {
 
         #region Properties
@@ -43,7 +43,7 @@ namespace Acr.UserDialogs
                 _okButton.Content = value;
             }
         }
-        
+
         /// <summary>
         /// Gets whether or not the OK button was pressed
         /// </summary>
@@ -51,7 +51,7 @@ namespace Acr.UserDialogs
         {
             get; private set;
         }
-        
+
         public Conflict Conflict { get; set; }
 
         public Document _selectedDocument;
@@ -94,7 +94,7 @@ namespace Acr.UserDialogs
         public bool TheirsSelected
         {
             get { return _theirsSelected; }
-            set 
+            set
             {
                 _theirsSelected = value;
                 _baseSelected = false;
@@ -122,6 +122,7 @@ namespace Acr.UserDialogs
                 NotifyPropertyChanged("SelectedDocument");
 
             }
+<<<<<<< HEAD
         }
 
         private void NotifyPropertyChanged(String info)
@@ -130,6 +131,9 @@ namespace Acr.UserDialogs
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+=======
+            */
+>>>>>>> refs/remotes/origin/master
         }
 
         #endregion
@@ -138,17 +142,21 @@ namespace Acr.UserDialogs
         {
             InitializeComponent();
             this.DataContext = this;
-            Conflict = conflict;          
+            Conflict = conflict;
         }
 
-        
+<<<<<<< HEAD
 
+
+=======
+        /* EP use Command binding
+>>>>>>> refs/remotes/origin/master
         private void HandleButtonClick(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
             WasOk = !((Button)sender).IsCancel;
             Close();
-        }
+        }*/
 
         #region IDisposable
 
@@ -159,7 +167,11 @@ namespace Acr.UserDialogs
 
         #endregion
 
-      
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> refs/remotes/origin/master
     }
 
 

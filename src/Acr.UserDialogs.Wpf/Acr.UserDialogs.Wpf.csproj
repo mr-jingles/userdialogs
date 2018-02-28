@@ -76,6 +76,9 @@
     <Reference Include="SimpleInjector, Version=4.0.12.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\..\..\crm2\packages\SimpleInjector.4.0.12\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)\packages\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Splat, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\Splat.2.0.0\lib\Net45\Splat.dll</HintPath>
     </Reference>
@@ -164,13 +167,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
     <Compile Include="ConflictDialog.xaml.cs">
       <DependentUpon>ConflictDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConflictDialogBak.xaml.cs">
-      <DependentUpon>ConflictDialogBak.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ConflictDialogViewModel.cs" />
     <Compile Include="Converter\NullToBooleanConverter.cs" />
+    <Compile Include="InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -211,9 +216,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+<<<<<<< HEAD
     <Page Include="ConflictDialogBak.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+=======
+    <Page Include="InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+>>>>>>> refs/remotes/origin/master
     </Page>
   </ItemGroup>
   <ItemGroup />
@@ -226,5 +237,8 @@
     <Error Condition="!Exists('..\packages\Couchbase.Lite.Support.NetDesktop.2.0.0-db021\build\Couchbase.Lite.Support.NetDesktop.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Couchbase.Lite.Support.NetDesktop.2.0.0-db021\build\Couchbase.Lite.Support.NetDesktop.targets'))" />
     <Error Condition="!Exists('..\..\..\crm2\packages\Couchbase.Lite.Support.NetDesktop.2.0.0-db022\build\Couchbase.Lite.Support.NetDesktop.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\crm2\packages\Couchbase.Lite.Support.NetDesktop.2.0.0-db022\build\Couchbase.Lite.Support.NetDesktop.targets'))" />
   </Target>
+<<<<<<< HEAD
   <Import Project="..\..\..\crm2\packages\Couchbase.Lite.Support.NetDesktop.2.0.0-db022\build\Couchbase.Lite.Support.NetDesktop.targets" Condition="Exists('..\..\..\crm2\packages\Couchbase.Lite.Support.NetDesktop.2.0.0-db022\build\Couchbase.Lite.Support.NetDesktop.targets')" />
+=======
+>>>>>>> refs/remotes/origin/master
 </Project>
